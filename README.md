@@ -1,10 +1,8 @@
 <h1 align="center"> Trabalho Prático - PDS II </h1>
 <p align="center">Trabalho Prático da disciplina Programação e Desenvolvimento de Software II - Implementação de uma máquina de busca.</p>
 
-# Indice
-- [Instalação do projeto](#-Instalacao)
-- [Participantes](#-Participantes)
 ---
+
 ## Instalação e Início
 
 - 1º Passo: Criar uma pasta destinada para o projeto.
