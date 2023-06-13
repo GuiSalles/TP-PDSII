@@ -4,10 +4,14 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <filesystem>
 
 using std::map;
 using std::string;
 using std::vector;
+using std::ifstream;
+
+namespace fs = std::filesystem;
 
 string normalizacao(string palavra){
     string palavranormalizada = " ";
@@ -27,8 +31,15 @@ string normalizacao(string palavra){
 void Mapeador::mapearPalavra(string pasta){
     string palavra;
     map<string, int> contador;
-    while(pasta >> palavra){
-        normalizacao(palavra);
-        contador[palavra]++;
+        for(const auto& arquivo : fs::directory_iterator(pasta)) {
+        if(arquivo.is_regular_file()) {
+            ifstream file(arquivo.path()); 
+            
+        while(file >> palavra){
+            normalizacao(palavra);
+            contador[palavra]++;
+        }
+        file.close();
+        }
     }
 }
