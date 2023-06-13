@@ -1,3 +1,4 @@
+#include "mapeador.h"
 #include <iostream>
 #include <map>
 #include <string>
@@ -12,18 +13,9 @@ using std::ifstream;
 
 namespace fs = std::filesystem;
 
-void leitor(string pasta){
-    for(const auto& arquivo : fs::directory_iterator(pasta)) {
-        if(arquivo.is_regular_file()) {
-            ifstream file(arquivo.path()); 
-        }
-    } 
-}
-
 string normalizacao(string palavra){
     string palavranormalizada = " ";
     int tam = 0;
-
     while(tam < palavra.length()){
         char let = palavra[tam];
         if (isalpha(let)){
@@ -34,5 +26,20 @@ string normalizacao(string palavra){
     return palavranormalizada;
 }
 
-void mapear(){
+
+
+void Mapeador::mapearPalavra(string pasta){
+    string palavra;
+    map<string, int> contador;
+        for(const auto& arquivo : fs::directory_iterator(pasta)) {
+        if(arquivo.is_regular_file()) {
+            ifstream file(arquivo.path()); 
+            
+        while(file >> palavra){
+            normalizacao(palavra);
+            contador[palavra]++;
+        }
+        file.close();
+        }
+    }
 }
