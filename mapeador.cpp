@@ -26,20 +26,15 @@ string normalizacao(string palavra){
     return palavranormalizada;
 }
 
-
-
 void Mapeador::mapearPalavra(string pasta){
     string palavra;
-    map<string, int> contador;
         for(const auto& arquivo : fs::directory_iterator(pasta)) {
-        if(arquivo.is_regular_file()) {
             ifstream file(arquivo.path()); 
             
         while(file >> palavra){
-            normalizacao(palavra);
-            contador[palavra]++;
+            palavra = normalizacao(palavra);
+            mapaDe_Palavras[palavra][arquivo.path()]++;
         }
         file.close();
-        }
     }
 }
