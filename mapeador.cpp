@@ -1,3 +1,4 @@
+#include "mapeador.h"
 #include <iostream>
 #include <map>
 #include <string>
@@ -11,7 +12,6 @@ using std::vector;
 string normalizacao(string palavra){
     string palavranormalizada = " ";
     int tam = 0;
-
     while(tam < palavra.length()){
         char let = palavra[tam];
         if (isalpha(let)){
@@ -22,5 +22,13 @@ string normalizacao(string palavra){
     return palavranormalizada;
 }
 
-void mapear(){
+
+
+void Mapeador::mapearPalavra(string pasta){
+    string palavra;
+    map<string, int> contador;
+    while(pasta >> palavra){
+        normalizacao(palavra);
+        contador[palavra]++;
+    }
 }
