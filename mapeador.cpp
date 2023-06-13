@@ -12,8 +12,12 @@ using std::vector;
 
 namespace fs = std::filesystem;
 
-void leitor(const string& pasta){
-    
+void leitor(string pasta){
+    for(arquivo : fs::directory_iterator(pasta)) {
+        if(arquivo.is_regular_file()) {
+            ifstream file(arquivo.path()); 
+        }
+    } 
 }
 
 string normalizacao(string palavra){
