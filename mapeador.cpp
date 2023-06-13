@@ -2,9 +2,11 @@
 #include <map>
 #include <string>
 #include <fstream>
+#include <vector>
 
 using std::map;
 using std::string;
+using std::vector;
 
 string normalizacao(string palavra){
     string palavranormalizada = " ";
@@ -20,11 +22,5 @@ string normalizacao(string palavra){
     return palavranormalizada;
 }
 
-string main(){
-
-map<string, int> cout;
-string file
-
-
-
+void mapear(){
 }
