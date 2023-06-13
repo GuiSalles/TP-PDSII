@@ -9,11 +9,7 @@ using std::string;
 class Mapeador{
     public:
 
-    void leitor(string pasta);
-
-    string normalizacao(string palavra);
-
-    void mapearPalavra();
+    void mapearPalavra(string pasta);
 
     private:
     map<string, map<string, int>> mapaDe_Palavras;
