@@ -9,11 +9,12 @@
 using std::map;
 using std::string;
 using std::vector;
+using std::ifstream;
 
 namespace fs = std::filesystem;
 
 void leitor(string pasta){
-    for(arquivo : fs::directory_iterator(pasta)) {
+    for(const auto& arquivo : fs::directory_iterator(pasta)) {
         if(arquivo.is_regular_file()) {
             ifstream file(arquivo.path()); 
         }
