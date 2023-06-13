@@ -13,7 +13,7 @@ class Mapeador{
 
     string normalizacao(string palavra);
 
-    void mapear();
+    void mapearPalavra();
 
     private:
     map<string, map<string, int>> mapaDe_Palavras;
