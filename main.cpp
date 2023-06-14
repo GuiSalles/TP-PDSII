@@ -1,21 +1,31 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "mapeador.h"
 #include "normalizador.h"
 #include "recuperador.h"
 
 int main(){
-    string pasta = "caminho";
+
     Mapeador mapeador;
+    string pasta = "path/to/documents/folder";
     mapeador.mapearPalavra(pasta);
 
-    Recupera recuperador;
+    string consulta;
+    getline(cin, consulta);
 
+    
+    vector<string> busca;
+    std::stringstream iss(consulta);
     string palavra;
-    vector<string> busca; 
-    recuperador.recuperacao(mapeador.mapaDe_Palavras, busca);
+    while (iss >> palavra) {
+        busca.push_back(palavra);
+    }
+
+    
+    Recupera recupera;
+    recupera.recuperacao(mapeador.mapaDe_Palavras, busca);
 
     return 0;
-    
-
 }
+    
