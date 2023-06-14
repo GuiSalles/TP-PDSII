@@ -24,6 +24,16 @@
         }
 
     }
+    for(auto& mapa : resultados){
+        vector<pair<string, int>>& aux = mapa.second;
+
+        sort(aux.begin(), aux.end(), [](pair<string, int> a, pair<string, int> b){
+            if(a.second == b.second){
+                return a.first < b.first;
+            }
+                return a.second > b.second;
+        });
+    }
     
 }
 
