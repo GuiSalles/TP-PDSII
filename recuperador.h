@@ -9,11 +9,19 @@
 #include <sstream>
 
 using std::string;
+using std::isalpha;
+using std::tolower;
+using std::cin;
+using std::cout; 
+using std::endl;
 using std::map;
 using std::vector;
+using std::pair;
 
-class{
+class Recupera{
     public:
+
+    Recupera();
     void recuperacao(map<string, map<string, int>>& mapaDe_Palavras, vector<string>& busca);
 
 
