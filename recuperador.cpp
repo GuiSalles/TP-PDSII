@@ -24,6 +24,7 @@
         }
 
     }
+    
     for(auto& mapa : resultados){
         vector<pair<string, int>>& aux = mapa.second;
 
@@ -34,6 +35,24 @@
                 return a.second > b.second;
         });
     }
-    
+
+    for ( auto& mapa : resultados){
+
+        vector<pair<string, int>>& aux = mapa.second;
+
+        cout<< mapa.first << " ";
+        
+        for(auto it = aux.begin(); it != aux.end(); ++it){
+            cout << "(" << it ->first << ", " << it -> second;
+            if (it != aux.end()-1){
+                cout << "), ";
+            }
+            else {
+                cout << ")";
+            }
+        } 
+        cout << endl;
+    }
+
 }
 
