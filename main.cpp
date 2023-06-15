@@ -7,9 +7,8 @@
 
 int main(){
 
-    Mapeador mapeador;
-    string pasta = "path/to/documents/folder";
-    mapeador.mapearPalavra(pasta);
+    
+    mapeador.mapearPalavra(./documents/);
 
     string consulta;
     getline(cin, consulta);
