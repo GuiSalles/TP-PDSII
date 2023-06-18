@@ -7,7 +7,6 @@
 
 int main(){
 
-    
     mapeador.mapearPalavra(./documents/);
 
     string consulta;
@@ -28,3 +27,4 @@ int main(){
     return 0;
 }
     
+
