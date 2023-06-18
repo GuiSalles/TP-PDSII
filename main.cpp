@@ -15,9 +15,8 @@ using std::istringstream;
 
 int main(){
     Mapeador mapeador;
-    mapeador.mapearPalavra("./Documents/");
 
-    string entrada;
+    Mapeador.mapearPalavra("./Documents/");
 
     getline(cin, entrada);
 
@@ -33,3 +32,5 @@ int main(){
 
     return 0;
 }
+    
+
