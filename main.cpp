@@ -1,30 +1,35 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <sstream>
+#include <fstream>
+#include <filesystem>
 #include "mapeador.h"
-#include "normalizador.h"
-#include "recuperador.h"
+
+using std::string;
+using std::vector;
+using std::cin;
+using std::getline;
+using std::istringstream;
+
 
 int main(){
+    Mapeador mapeador;
+    mapeador.mapearPalavra("./Documents/");
 
-    
-    mapeador.mapearPalavra(./documents/);
+    string entrada;
 
-    string consulta;
-    getline(cin, consulta);
+    getline(cin, entrada);
 
-    
-    vector<string> busca;
-    std::stringstream iss(consulta);
+    vector<string> palavras;
+    istringstream iss(entrada);
     string palavra;
-    while (iss >> palavra) {
-        busca.push_back(palavra);
+
+    while (iss>>palavra){
+        palavras.push_back(palavra);
     }
 
-    
-    Recupera recupera;
-    recupera.recuperacao(mapeador.mapaDe_Palavras, busca);
+    mapeador.buscarPalavra(palavras);
 
     return 0;
 }
-    
