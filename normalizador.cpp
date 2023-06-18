@@ -3,6 +3,7 @@
 #include <filesystem>
 
 using std::string;
+    
 
 string Normaliza::normalizacao(string palavra){
     palavranormalizada = " ";
