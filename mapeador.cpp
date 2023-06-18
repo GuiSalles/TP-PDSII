@@ -25,7 +25,7 @@ void Mapeador::mapearPalavra(string pasta){
     string palavra;
         for(auto arquivo : fs::directory_iterator(pasta)) {
             ifstream file(arquivo.path()); 
-            
+
         while(file >> palavra){
             palavra = normaliza.normalizacao(palavra);
             mapaDe_Palavras[palavra][arquivo.path()]++;
