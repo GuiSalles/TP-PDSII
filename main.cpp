@@ -6,8 +6,9 @@
 #include "recuperador.h"
 
 int main(){
+    Mapeador mapeador;
 
-    mapeador.mapearPalavra(./documents/);
+    Mapeador.mapearPalavra("./Documents/");
 
     string consulta;
     getline(cin, consulta);
