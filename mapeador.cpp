@@ -62,7 +62,7 @@ void Mapeador::buscarPalavra(vector<string> palavras) {
     cout << endl;
 
     if (arquivosComTodasAsPalavras.empty()) {
-        cout << "Nenhum arquivo encontrado com todas as palavras" << endl;
+        cout << "Palavras existem, mas em arquivos diferentes" << endl;
     } else {
         sort(arquivosComTodasAsPalavras.begin(), arquivosComTodasAsPalavras.end(), [&](const string& arquivo1, const string& arquivo2) {
             int ocorrencias1 = 0;
