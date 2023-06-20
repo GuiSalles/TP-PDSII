@@ -1,17 +1,10 @@
 #include "mapeador.h"
 #include "normalizador.h"
 #include <iostream>
-#include <map>
-#include <string>
 #include <fstream>
-#include <vector>
 #include <filesystem>
 #include <algorithm>
-#include <utility>
 
-using std::map;
-using std::string;
-using std::vector;
 using std::ifstream;
 using std::endl;
 using std::cout;
@@ -20,13 +13,13 @@ using std::pair;
 
 namespace fs = std::filesystem;
 
-void Mapeador::mapearPalavra(string pasta){
+void Mapeador::mapearPalavra(string pasta) {
     Normaliza normaliza;
     string palavra;
-        for(auto arquivo : fs::directory_iterator(pasta)) {
-            ifstream file(arquivo.path()); 
+    for (auto arquivo : fs::directory_iterator(pasta)) {
+        ifstream file(arquivo.path());
 
-        while(file >> palavra){
+        while (file >> palavra) {
             palavra = normaliza.normalizacao(palavra);
             mapaDe_Palavras[palavra][arquivo.path()]++;
         }
@@ -34,52 +27,54 @@ void Mapeador::mapearPalavra(string pasta){
     }
 }
 
-void Mapeador::buscarPalavra(vector<string> palavras){
+void Mapeador::buscarPalavra(vector<string> palavras) {
     Normaliza normaliza;
 
-    map<string, vector<pair<string, int>>> resultados;
+    vector<string> arquivosComTodasAsPalavras;
 
-    for (auto it = palavras.begin(); it != palavras.end(); ++it){
-        string palavra_busca = normaliza.normalizacao(*it);
-        if(mapaDe_Palavras.count(palavra_busca) > 0){
-            for (auto it2 = mapaDe_Palavras.at(palavra_busca).begin(); it2 != mapaDe_Palavras.at(palavra_busca).end(); ++it2){
-                string codDoc = it2->first;
-                int quant = it2->second;
-
-                resultados[palavra_busca].push_back(make_pair(codDoc, quant));
+    for (const string& palavra : palavras) {
+        string palavraBusca = normaliza.normalizacao(palavra);
+        if (mapaDe_Palavras.count(palavraBusca) > 0) {
+            const map<string, int>& ocorrencias = mapaDe_Palavras[palavraBusca];
+            if (arquivosComTodasAsPalavras.empty()) {
+                for (const auto& it : ocorrencias) {
+                    arquivosComTodasAsPalavras.push_back(it.first);
+                }
+            } else {
+                vector<string> arquivosTemp;
+                for (const auto& it : ocorrencias) {
+                    const string& arquivo = it.first;
+                    if (find(arquivosComTodasAsPalavras.begin(), arquivosComTodasAsPalavras.end(), arquivo) != arquivosComTodasAsPalavras.end()) {
+                        arquivosTemp.push_back(arquivo);
+                    }
+                }
+                arquivosComTodasAsPalavras = arquivosTemp;
             }
-        }
-        else {
-            cout << "A palavra está fora dos documentos" << endl;
+        } else {
+            cout << "A palavra '" << palavra << "' não foi encontrada nos documentos" << endl;
+            return;
         }
     }
 
-    for(auto& mapa : resultados){
-        vector<pair<string, int>>& aux = mapa.second;
+    for (const string& palavra : palavras) {
+        cout << palavra << " ";
+    }
+    cout << endl;
 
-        sort(aux.begin(), aux.end(), [](pair<string, int> a, pair<string, int> b){
-            if(a.second == b.second){
-                return a.first < b.first;
-            } 
-                return a.second > b.second;
+    if (arquivosComTodasAsPalavras.empty()) {
+        cout << "Nenhum arquivo encontrado com todas as palavras" << endl;
+    } else {
+        sort(arquivosComTodasAsPalavras.begin(), arquivosComTodasAsPalavras.end(), [&](const string& arquivo1, const string& arquivo2) {
+            int ocorrencias1 = 0;
+            int ocorrencias2 = 0;
+            for (const string& palavra : palavras) {
+                ocorrencias1 += mapaDe_Palavras[normaliza.normalizacao(palavra)][arquivo1];
+                ocorrencias2 += mapaDe_Palavras[normaliza.normalizacao(palavra)][arquivo2];
+            }
+            return ocorrencias1 > ocorrencias2;
         });
-    }
-
-    for ( auto& mapa : resultados){
-
-        vector<pair<string, int>>& aux = mapa.second;
-
-        cout<< mapa.first << " ";
-
-        for(auto it = aux.begin(); it != aux.end(); ++it){
-            cout << "(" << it ->first << ", " << it -> second;
-            if (it != aux.end()-1){
-                cout << "), ";
-            }
-            else {
-                cout << ")";
-            }
-        } 
-        cout << endl;
+        for (const string& arquivo : arquivosComTodasAsPalavras) {
+            cout << fs::path(arquivo).filename() << endl;
+        }
     }
 }
