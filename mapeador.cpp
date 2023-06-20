@@ -51,7 +51,7 @@ void Mapeador::buscarPalavra(vector<string> palavras) {
                 arquivosComTodasAsPalavras = arquivosTemp;
             }
         } else {
-            cout << "A palavra '" << palavra << "' não foi encontrada nos documentos" << endl;
+            cout << "A(s) palavra(s) não foi/foram encontrada(s) nos documentos" << endl;
             return;
         }
     }
