@@ -61,6 +61,9 @@ void Mapeador::buscarPalavra(vector<string> palavras) {
     }
     cout << endl;
 
+    if (arquivosComTodasAsPalavras.empty()) {
+        cout << "Nenhum arquivo encontrado com todas as palavras" << endl;
+    } else {
         sort(arquivosComTodasAsPalavras.begin(), arquivosComTodasAsPalavras.end(), [&](const string& arquivo1, const string& arquivo2) {
             int ocorrencias1 = 0;
             int ocorrencias2 = 0;
@@ -74,4 +77,4 @@ void Mapeador::buscarPalavra(vector<string> palavras) {
             cout << fs::path(arquivo).filename() << endl;
         }
     }
-
+}
