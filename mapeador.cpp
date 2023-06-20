@@ -40,9 +40,8 @@ void Mapeador::buscarPalavra(vector<string> palavras) {
                 }
             } else {
                 vector<string> arquivosTemp;
-                for (const auto& it : ocorrencias) {
-                    const string& arquivo = it.first;
-                    if (find(arquivosComTodasAsPalavras.begin(), arquivosComTodasAsPalavras.end(), arquivo) != arquivosComTodasAsPalavras.end()) {
+                for (const auto& arquivo : arquivosComTodasAsPalavras) {
+                    if (ocorrencias.count(arquivo) > 0) {
                         arquivosTemp.push_back(arquivo);
                     }
                 }
