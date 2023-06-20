@@ -8,8 +8,6 @@
 using std::ifstream;
 using std::endl;
 using std::cout;
-using std::sort;
-using std::pair;
 
 namespace fs = std::filesystem;
 
