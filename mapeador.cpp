@@ -61,17 +61,37 @@ void Mapeador::buscarPalavra(vector<string> palavras) {
     if (arquivosComTodasAsPalavras.empty()) {
         cout << "Palavras existem, mas em arquivos diferentes" << endl;
     } else {
-        sort(arquivosComTodasAsPalavras.begin(), arquivosComTodasAsPalavras.end(), [&](const string& arquivo1, const string& arquivo2) {
-            int ocorrencias1 = 0;
-            int ocorrencias2 = 0;
-            for (const string& palavra : palavras) {
-                ocorrencias1 += mapaDe_Palavras[normaliza.normalizacao(palavra)][arquivo1];
-                ocorrencias2 += mapaDe_Palavras[normaliza.normalizacao(palavra)][arquivo2];
-            }
-            return ocorrencias1 > ocorrencias2;
-        });
+        vector<string> arquivosComTodasAsPalavrasFiltrados;
+
         for (const string& arquivo : arquivosComTodasAsPalavras) {
-            cout << fs::path(arquivo).filename() << endl;
+            bool todasAsPalavrasPresentes = true;
+            for (const string& palavra : palavras) {
+                string palavraBusca = normaliza.normalizacao(palavra);
+                if (mapaDe_Palavras[palavraBusca].count(arquivo) == 0) {
+                    todasAsPalavrasPresentes = false;
+                    break;
+                }
+            }
+            if (todasAsPalavrasPresentes) {
+                arquivosComTodasAsPalavrasFiltrados.push_back(arquivo);
+            }
+        }
+
+        if (arquivosComTodasAsPalavrasFiltrados.empty()) {
+            cout << "Palavras existem, mas em arquivos diferentes" << endl;
+        } else {
+            sort(arquivosComTodasAsPalavrasFiltrados.begin(), arquivosComTodasAsPalavrasFiltrados.end(), [&](const string& arquivo1, const string& arquivo2) {
+                int ocorrencias1 = 0;
+                int ocorrencias2 = 0;
+                for (const string& palavra : palavras) {
+                    ocorrencias1 += mapaDe_Palavras[normaliza.normalizacao(palavra)][arquivo1];
+                    ocorrencias2 += mapaDe_Palavras[normaliza.normalizacao(palavra)][arquivo2];
+                }
+                return ocorrencias1 > ocorrencias2;
+            });
+            for (const string& arquivo : arquivosComTodasAsPalavrasFiltrados) {
+                cout << fs::path(arquivo).filename() << endl;
+            }
         }
     }
 }
