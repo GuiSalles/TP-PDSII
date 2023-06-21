@@ -1,6 +1,16 @@
 <h1 align="center"> Trabalho Prático - PDS II </h1>
 <p align="center">Trabalho Prático da disciplina Programação e Desenvolvimento de Software II - Implementação de uma máquina de busca.</p>
 
+## Participantes
+- Lívia Castro Rocha de Aquino Santos
+- Guilherme Xavier Salles
+- Marcus Vinicius Gomes de Oliveira
+- 
+---
+
+## Documentação do Projeto
+> https://docs.google.com/document/d/1ilg0ssnfp3Vj9SevvF1wVd4qV4dTSZYOXRmQaiFays0/edit?usp=sharing
+
 ---
 
 ## Instalação e Início
@@ -31,7 +41,3 @@
 - 9º Passo: Enviar as alterações com o comando **git push** e criar uma **Pull Request** no GitHub.
 
 ---
-## Participantes
-- Lívia Castro Rocha de Aquino Santos
-- Guilherme Xavier Salles
-- Marcus Vinicius Gomes de Oliveira
