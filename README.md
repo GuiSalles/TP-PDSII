@@ -5,7 +5,7 @@
 - Lívia Castro Rocha de Aquino Santos
 - Guilherme Xavier Salles
 - Marcus Vinicius Gomes de Oliveira
-- 
+  
 ---
 
 ## Documentação do Projeto
