@@ -14,6 +14,8 @@
 ---
 
 - Para rodar o código, é necessário usar o comando:
+> make
+- Depois usar:
 > ./recuperador
 - E inserir as palavras que se deseja buscar.
 
