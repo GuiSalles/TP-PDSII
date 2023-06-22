@@ -15,7 +15,7 @@ using std::istringstream;
 
 int main(){
     Mapeador mapeador;
-    mapeador.mapearPalavra("./Documents/");
+    mapeador.mapearPalavra("./documents/");
 
     string entrada;
 
