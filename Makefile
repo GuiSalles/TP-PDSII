@@ -1,11 +1,11 @@
-recuperador: main.o mapeador.o normalizador.o
-	c++ -I . -std=c++17 main.o mapeador.o normalizador.o -o recuperador
+recuperador: build/main.o build/mapeador.o build/normalizador.o
+	c++ -I include -std=c++17 build/main.o build/mapeador.o build/normalizador.o -o recuperador
 
-main.o: main.cpp mapeador.h
-	c++ -I . -std=c++17 -c main.cpp
+build/main.o: src/main.cpp include/mapeador.h
+	c++ -I include -std=c++17 -c src/main.cpp -o build/main.o
 
-mapeador.o: mapeador.cpp mapeador.h normalizador.h
-	c++ -I . -std=c++17 -c mapeador.cpp
+build/mapeador.o: src/funcoes/mapeador.cpp include/mapeador.h include/normalizador.h
+	c++ -I include -std=c++17 -c src/funcoes/mapeador.cpp -o build/mapeador.o
 
-normalizador.o: normalizador.cpp normalizador.h
-	c++ -I . -std=c++17 -c normalizador.cpp
+build/normalizador.o: src/funcoes/normalizador.cpp include/normalizador.h
+	c++ -I include -std=c++17 -c src/funcoes/normalizador.cpp -o build/normalizador.o
