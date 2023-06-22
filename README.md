@@ -13,6 +13,12 @@
 
 ---
 
+- Para rodar o código, é necessário usar o comando:
+> ./recuperador
+- E inserir as palavras que se deseja buscar.
+
+---
+
 ## Instalação e Início
 
 - 1º Passo: Criar uma pasta destinada para o projeto.
